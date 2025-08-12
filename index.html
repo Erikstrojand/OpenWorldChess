@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open World Chess</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-container">
+    <div id="ui">
+      <h1>Open World Chess</h1>
+      <div id="loading" class="loading hidden">Connecting to server...</div>
+      <div id="error" class="error hidden"></div>
+      <div class="input-group">
+        <label for="player-name-input">Player Name</label>
+        <input id="player-name-input" placeholder="Choose a name" aria-label="Enter player name" maxlength="20" />
+        <button id="set-name" aria-label="Set name or respawn" disabled>Set Name / Respawn</button>
+      </div>
+      <div id="player-info" class="info">
+        <h2>Player Stats</h2>
+        <div id="player-name">Name: -</div>
+        <div id="player-rank">Rank: -</div>
+        <div id="player-points">Points: -</div>
+        <div id="player-status">Status: -</div>
+        <div id="player-coords">Coordinates: -</div> 
+      </div>
+      <button id="remove-me" aria-label="Leave game">Leave Game</button>
+      <h2>Leaderboard</h2>
+      <div id="players-list" class="players-list">(none)</div>
+      <small>Click or tap a valid space to move. Movement depends on your rank(piece). Pawns can move in all directions.</small>
+    </div>
+    <div id="board-wrap">
+      <canvas id="chessboard" width="720" height="720" aria-label="Chessboard for Open World Chess"></canvas>
+    </div>
+    <div id="rank-buttons-container" aria-label="Unlocked chess piece ranks" style="display:flex; justify-content:center; gap:10px; margin-top:15px; flex-wrap: wrap;"></div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5e8c7 0%, #d4a017 100%);
+  color: #333;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+}
+
+#game-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#ui {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 280px;
+  max-width: 320px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0 0 15px;
+  color: #2e7d32;
+  text-align: center;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin: 10px 0 5px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+#chessboard {
+  border: 4px solid #2e7d32;
+  border-radius: 8px;
+  background-color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#player-info {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.95em;
+}
+
+#player-info div {
+  margin: 8px 0;
+  color: #37474f;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#player-name-input {
+  padding: 10px;
+  border: 2px solid #2e7d32;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 0.95em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#player-name-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  color: #fff;
+  font-size: 0.95em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#remove-me {
+  background: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);
+}
+
+#remove-me:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ef5350 0%, #d32f2f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.players-list {
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.players-list div:nth-child(odd) {
+  background-color: #f5f5f5;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+small {
+  color: #546e7a;
+  font-size: 0.85em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.loading, .error {
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.loading {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.error {
+  background-color: #e53935;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  #game-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #chessboard {
+    max-width: 100%;
+    width: 320px;
+    height: 320px;
+  }
+
+  #ui {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+  }
+
+  button, #player-name-input {
+    font-size: 0.85em;
+    padding: 8px;
+  }
+}
+
+
+.rank-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Roboto', Arial, sans-serif;
+  transition: background-color 0.3s, opacity 0.3s;
+  background-color: #4caf50;
+  color: white;
+  min-width: 70px;
+  user-select: none;
+}
+
+.rank-button.locked {
+  background-color: #2e7d32;
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.rank-button.active {
+  box-shadow: 0 0 8px 2px #81c784;
+  background-color: #66bb6a;
+}
+
+
+/*whos callin my phone?*/
+
+
+
+/*ovo sounddd*/
