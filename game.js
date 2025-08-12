@@ -153,6 +153,21 @@ let players = {};
 database.ref('players').on('value', snapshot => {
   loadingEl.classList.add('hidden');
   const remotePlayers = snapshot.val() || {};
+
+  // Sync current player's state from Firebase, or mark dead if not found
+  if (remotePlayers[player.id]) {
+    const remotePlayer = remotePlayers[player.id];
+    player.dead = !!remotePlayer.dead;
+    player.points = remotePlayer.points;
+    player.rank = remotePlayer.rank;
+    player.x = remotePlayer.x;
+    player.y = remotePlayer.y;
+    player.name = remotePlayer.name;
+  } else {
+    player.dead = true;
+  }
+
+  // Sync other players and track animations
   for (const id in remotePlayers) {
     if (!players[id]) {
       players[id] = { ...remotePlayers[id], targetX: null, targetY: null, animStart: null };
@@ -172,6 +187,8 @@ database.ref('players').on('value', snapshot => {
       p.dead = r.dead || false;
     }
   }
+
+  // Remove players that disappeared from Firebase, mark current player dead if removed
   for (const id in players) {
     if (!remotePlayers[id]) {
       if (id === player.id && !player.dead) {
@@ -181,6 +198,7 @@ database.ref('players').on('value', snapshot => {
       delete players[id];
     }
   }
+
   updateUI();
   drawBoard();
 });
